@@ -1,4 +1,4 @@
-package com.nvv.viv.entity;
+package com.nvv.viv.entity.data;
 
 import com.nvv.viv.abstracts.EntityDataBase;
 

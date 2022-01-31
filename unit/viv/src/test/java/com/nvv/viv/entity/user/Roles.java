@@ -1,4 +1,4 @@
-package com.nvv.viv.entity;
+package com.nvv.viv.entity.user;
 
 public enum Roles {
     ADMIN,
