@@ -1,7 +1,6 @@
 package com.nvv.viv.entity.chat;
 
 import com.nvv.viv.abstracts.EntityDataBase;
-import com.nvv.viv.entity.chat.ChatModel;
 import com.nvv.viv.entity.user.ClientModel;
 
 import javax.persistence.*;
