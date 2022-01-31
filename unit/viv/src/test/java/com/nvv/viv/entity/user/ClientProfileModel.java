@@ -1,6 +1,7 @@
-package com.nvv.viv.entity;
+package com.nvv.viv.entity.user;
 
 import com.nvv.viv.abstracts.EntityDataBase;
+import com.nvv.viv.entity.data.FileModel;
 
 import javax.persistence.*;
 
