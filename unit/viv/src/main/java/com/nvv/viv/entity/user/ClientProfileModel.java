@@ -1,28 +1,21 @@
 package com.nvv.viv.entity.user;
 
-import com.nvv.viv.abstracts.EntityDataBase;
-import com.nvv.viv.entity.data.FileModel;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 
 
 @Entity(name = "profiles")
-public class ClientProfileModel extends EntityDataBase {
-    public ClientProfileModel() {
-    }
+public class ClientProfileModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    public ClientProfileModel(long id, String firstName, String lastName, String username, String phoneNumber, String bio, long registrationDate, boolean active, long birthday, FileModel avatar) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-        this.bio = bio;
-        this.registrationDate = registrationDate;
-        this.active = active;
-        this.birthday = birthday;
-        this.avatar = avatar;
-    }
+    @Column(updatable = false)
+    private final LocalDateTime createdDate = LocalDateTime.now();
+
+    @Column(name = "mark")
+    private boolean markForDelete = false;
 
     @Column(nullable = false)
     private String firstName;
@@ -40,10 +33,23 @@ public class ClientProfileModel extends EntityDataBase {
     private boolean active;
     @Column(nullable = false)
     private long birthday;
+    @Lob
+    private byte[] avatar;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "file_model_id")
-    private FileModel avatar;
+    public ClientProfileModel() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public boolean isMarkForDelete() {
+        return markForDelete;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -77,7 +83,40 @@ public class ClientProfileModel extends EntityDataBase {
         return birthday;
     }
 
-    public FileModel getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
+    }
+
+    public void setMarkForDelete(boolean markForDelete) {
+        this.markForDelete = markForDelete;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientProfileModel{" +
+                "id=" + id +
+                ", createdDate=" + createdDate +
+                ", markForDelete=" + markForDelete +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", bio='" + bio + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", active=" + active +
+                ", birthday=" + birthday +
+                ", avatar=" + Arrays.toString(avatar) +
+                '}';
+    }
+
+    public ClientProfileModel(String firstName, String lastName, String username, String phoneNumber, String bio, long registrationDate, long birthday, byte[] avatar) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.bio = bio;
+        this.registrationDate = registrationDate;
+        this.birthday = birthday;
+        this.avatar = avatar;
     }
 }

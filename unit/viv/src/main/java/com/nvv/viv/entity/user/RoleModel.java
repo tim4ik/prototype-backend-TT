@@ -1,32 +1,51 @@
 package com.nvv.viv.entity.user;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
-import com.nvv.viv.abstracts.EntityDataBase;
+@Entity(name = "rules")
+public class RoleModel{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+    @Column(updatable = false)
+    private final LocalDateTime createdDate = LocalDateTime.now();
 
-@Entity(name = "app_rules")
-public class RoleModel extends EntityDataBase {
+    @Column(name = "mark")
+    private boolean markForDelete;
     public RoleModel() {
     }
 
-    public RoleModel(long id) {
-        super(id);
-    }
 
     public RoleModel(String name) {
         this.name = name;
     }
 
-    public RoleModel(long id, String name) {
-        super(id);
-        this.name = name;
-    }
-
-    @Column(name = "value")
+    @Column(name = "value", unique = true, updatable = false)
     private String name;
 
     public String getName() {
         return name;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "RoleModel{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public boolean isMarkForDelete() {
+        return markForDelete;
     }
 }
