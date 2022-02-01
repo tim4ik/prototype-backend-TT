@@ -1,14 +1,12 @@
 package com.nvv.viv;
 
 
-import com.nvv.viv.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+
 
 @SpringBootApplication
 public class Main {
@@ -17,31 +15,15 @@ public class Main {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner mappingDemo(ClientModelRepository clientModelRepository,
-//                                         ClientProfileModelRepository clientProfileModelRepository) {
-//        return args -> {
-//            boolean createRole = false;
-//            boolean createUser = false;
-//            try {
-//                if (createRole) {
-//
-//
-//                    roleModels.forEach(System.out::println);
-//                }
-//                if(createUser){
-//                    ClientProfileModel cpm = new ClientProfileModel("firstName","lastName","username","phoneNumber","bio", 741852963L, 123456789L, "avatar".getBytes(StandardCharsets.UTF_8));
-//                    clientProfileModelRepository.save(cpm);
-//                    var r = roleModelRepository.getById(1L);
-//                    var p = clientProfileModelRepository.getById(1L);
-//                    clientModelRepository.save(new ClientModel("w@w.w","123456789", p,r));
-//                }
-//
-//            } catch (Exception e) {
-//                System.out.println(e);
-//            }
-//
-//
-//        };
-//    }
+    @Bean
+    public CommandLineRunner mappingDemo(/*RoleRepository roleRepository*/) {
+        return args -> {
+//            roleRepository.create(new Role(0, "admin"));
+//            roleRepository.create(new Role(0, "admin1"));
+//            roleRepository.create(new Role(0, "admin2"));
+//            roleRepository.create(new Role(0, "admin3"));
+//            List<Role> roleList = roleRepository.read();
+//            roleList.forEach(System.out::println);
+        };
+    }
 }
