@@ -1,0 +1,21 @@
+package com.nvv.viv.repository;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "rooms")
+public class RoomModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
+
+    @ManyToOne
+    @JoinColumn(name = "client_model_id")
+    ClientModel clientModel;
+
+    @OneToMany(targetEntity = FriendModel.class, mappedBy = "clientModel", fetch = FetchType.EAGER)
+    List<FriendModel>friendModels = new ArrayList<>();
+
+
+}
