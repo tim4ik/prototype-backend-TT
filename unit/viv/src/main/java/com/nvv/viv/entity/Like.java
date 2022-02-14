@@ -19,8 +19,8 @@ public class Like {
     @Column(name = "id", updatable = false)
     private long Id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_model_id")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "client_id")
     private Client client;
 
 }

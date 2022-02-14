@@ -16,17 +16,17 @@ import java.util.List;
 @NoArgsConstructor
 public class Post {
     @Id
-    @SequenceGenerator(name = "post_profile_sequence", sequenceName = "post_profile_sequence" , allocationSize = 1)
+    @SequenceGenerator(name = "post_profile_sequence", sequenceName = "post_profile_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_profile_sequence")
     @Column(name = "id", updatable = false)
     private long Id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_model_id", nullable = false)
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @Column(name = "ldt_cr", nullable = false)
-    private LocalDateTime localDateTime = LocalDateTime.now();
+    @Column(name = "post_date", nullable = false)
+    private LocalDateTime localDateTime;
 
     @Lob
     private byte[] video;
@@ -34,10 +34,35 @@ public class Post {
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
 
-    @OneToMany(targetEntity = Like.class, mappedBy = "client")
+    @OneToMany(mappedBy = "client")
     private List<Like> likes = new ArrayList<>();
+
+    public void addLike(Like like) {
+        if (!likes.contains(like)) {
+            likes.add(like);
+            like.setClient(client);
+        }
+    }
+
+    public void removeLike(Like like) {
+        if (likes.contains(like)) {
+            likes.remove(like);
+            like.setClient(null);
+        }
+    }
 
     @OneToMany(targetEntity = HashTag.class, mappedBy = "value")
     private List<HashTag> tags = new ArrayList<>();
 
+    public void addTag(HashTag hashTag) {
+        if (!tags.contains(hashTag)) {
+            tags.add(hashTag);
+        }
+    }
+
+    public void removeLike(HashTag hashTag) {
+        if (tags.contains(hashTag)) {
+            tags.remove(hashTag);
+        }
+    }
 }

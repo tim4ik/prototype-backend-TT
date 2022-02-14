@@ -23,10 +23,10 @@ public class Message {
     @Column(name = "body",nullable = false, columnDefinition = "TEXT")
     private String body;
 
-    @Column(name = "ldt_cr",nullable = false)
+    @Column(name = "massage_date",nullable = false)
     private LocalDateTime time;
 
-    @ManyToOne
-    @JoinColumn(name = "client_model_id")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "client_id")
     private Client client;
 }

@@ -1,5 +1,6 @@
 package com.nvv.viv.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,21 +20,23 @@ public class Client {
     @Column(name = "id", updatable = false)
     private long id;
 
-    @Column(name ="x_ldt_cd" ,nullable = false, updatable = false)
+    @Column(name ="client_date" ,nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
     @Column(name = "login",unique = true, nullable = false, columnDefinition = "TEXT")
+    @JsonIgnore
     private String email;
 
     @Column(name = "password" ,nullable = false, columnDefinition = "TEXT")
+    @JsonIgnore
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "client_profile_model_id")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "profile_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "client_profile_fk"))
     private Profile profile;
 
-    @ManyToOne
-    @JoinColumn(name = "role_model_id")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "role_id")
     private Role role;
 
 }

@@ -1,5 +1,6 @@
 package com.nvv.viv.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,10 +21,25 @@ public class Friend {
     @Column(name = "id", updatable = false)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "client_model_id")
+    @ManyToOne(cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToMany(targetEntity = Message.class, mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Message> messageList = new ArrayList<>();
+
+    public void addMessage(Message message){
+        if(!this.messageList.contains((message))){
+            this.messageList.add(message);
+            message.setClient(client);
+        }
+    }
+
+    public void removeMessage(Message message){
+        if(this.messageList.contains((message))){
+            this.messageList.remove(message);
+            message.setClient(null);
+        }
+    }
 }

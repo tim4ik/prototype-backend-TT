@@ -34,8 +34,8 @@ public class Profile {
     @Column(name = "bio", nullable = false, columnDefinition = "TEXT")
     private String bio;
 
-    @Column(name="z_cr_date", nullable = false)
-    LocalDateTime registrationDate = LocalDateTime.now();
+    @Column(name="registration_date", nullable = false)
+    LocalDateTime registrationDate;
 
     @Column(name="z_lock", nullable = false)
     private boolean lock = false;
