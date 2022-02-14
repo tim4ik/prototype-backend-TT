@@ -21,7 +21,7 @@ public class Message {
     private long id;
 
     @Column(name = "body",nullable = false, columnDefinition = "TEXT")
-    private String body;
+    private String body; //1
 
     @Column(name = "massage_date",nullable = false)
     private LocalDateTime time;
