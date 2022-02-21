@@ -35,8 +35,8 @@ public class Client {
     @JoinColumn(name = "profile_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "client_profile_fk"))
     private Profile profile;
 
-    @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "role_id")
-    private Role role;
+//    @ManyToOne(cascade = {CascadeType.MERGE})
+//    @JoinColumn(name = "role_id")
+//    private Role role;
 
 }
