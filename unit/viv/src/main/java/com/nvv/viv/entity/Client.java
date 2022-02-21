@@ -38,6 +38,10 @@ public class Client implements UserDetails {
     @JsonIgnore
     private String password;
 
+    @Column(name = "nick" ,nullable = false, columnDefinition = "TEXT")
+    @JsonIgnore
+    private String nick;
+
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "profile_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "client_profile_fk"))
     private Profile profile;
@@ -52,6 +56,14 @@ public class Client implements UserDetails {
 
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
+
+    public Client(long id, String username, String email, String password, List<GrantedAuthority> authorities) {
+        this.id = id;
+        this.nick = username;
+        this.email = email;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     @PrePersist
     protected void onCreate() {
