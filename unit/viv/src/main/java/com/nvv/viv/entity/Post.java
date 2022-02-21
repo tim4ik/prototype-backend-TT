@@ -29,6 +29,7 @@ public class Post {
     private LocalDateTime localDateTime;
 
     @Lob
+    @Column(columnDefinition = "bytea")
     private byte[] video;
 
     @Column(name = "description", nullable = false, columnDefinition = "TEXT")
@@ -61,8 +62,13 @@ public class Post {
     }
 
     public void removeLike(HashTag hashTag) {
-        if (tags.contains(hashTag)) {
-            tags.remove(hashTag);
-        }
+        tags.remove(hashTag);
+    }
+
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+    @PrePersist
+    protected void onCreate(){
+        this.createdDate = LocalDateTime.now();
     }
 }
