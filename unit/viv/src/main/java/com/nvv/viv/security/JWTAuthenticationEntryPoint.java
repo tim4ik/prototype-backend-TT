@@ -21,5 +21,6 @@ public class JWTAuthenticationEntryPoint implements AuthenticationEntryPoint {
         httpServletResponse.setContentType(SecurityConstants.CONTENT_TYPE);
         httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
         httpServletResponse.getWriter().println(jsonLoginResponse);
+
     }
 }
