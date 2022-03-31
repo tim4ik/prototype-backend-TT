@@ -21,8 +21,7 @@ import java.util.*;
 @NoArgsConstructor
 public class Client implements UserDetails {
     @Id
-    @SequenceGenerator(name = "client_profile_sequence", sequenceName = "client_profile_sequence" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long id;
 

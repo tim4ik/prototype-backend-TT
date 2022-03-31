@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Profile {
     @Id
-    @SequenceGenerator(name = "profile_profile_sequence", sequenceName = "profile_profile_sequence" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "profile_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long id;
 

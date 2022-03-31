@@ -16,8 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Friend {
     @Id
-    @SequenceGenerator(name = "friend_profile_sequence", sequenceName = "friend_profile_sequence" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "friend_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long id;
 

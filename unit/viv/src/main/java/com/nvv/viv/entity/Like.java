@@ -14,8 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Like {
     @Id
-    @SequenceGenerator(name = "like_profile_sequence", sequenceName = "like_profile_sequence" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "like_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long Id;
 

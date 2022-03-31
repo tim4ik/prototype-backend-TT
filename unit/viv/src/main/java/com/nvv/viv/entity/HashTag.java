@@ -13,8 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class HashTag {
     @Id
-    @SequenceGenerator(name = "hashtag_profile_sequence", sequenceName = "hashtag_profile_sequence" , allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hashtag_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long Id;
 

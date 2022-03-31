@@ -16,8 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Post {
     @Id
-    @SequenceGenerator(name = "post_profile_sequence", sequenceName = "post_profile_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_profile_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private long Id;
 
